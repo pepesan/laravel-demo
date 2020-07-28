@@ -75,3 +75,13 @@ Route::prefix('prefijo')->group(function () {
     });
 });
 
+// Rutas de Controladores
+Route::get('example/', 'ExampleController@show');
+// Rutas a anidados
+Route::get('example/anidado', 'Anidados\AnidadoController@show');
+// Manejo de la petición desde controladores
+Route::get('pcontroller/', 'ParamsController@index');
+Route::post('pcontroller/', 'ParamsController@add');
+Route::put('pcontroller/', 'ParamsController@update');
+Route::post('pcontroller/name', 'ParamsController@formProcess');
+Route::post('pcontroller/nameJson', 'ParamsController@dameJson');
