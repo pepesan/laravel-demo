@@ -85,3 +85,6 @@ Route::post('pcontroller/', 'ParamsController@add');
 Route::put('pcontroller/', 'ParamsController@update');
 Route::post('pcontroller/name', 'ParamsController@formProcess');
 Route::post('pcontroller/nameJson', 'ParamsController@dameJson');
+
+# Manejo de BBDD
+Route::get('users/', 'UserController@index');
