@@ -7,52 +7,112 @@ use App\Movie as Movie;
 
 class MovieController extends Controller
 {
-    //función de listado
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(){
+        // coge el listado de pelis
         $movies = Movie::all();
+        // presenta el listado
         return \View::make('list',compact('movies'));
     }
-    // función del formulario
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return \View::make('new');
     }
-    // formulario de editar
-    public function edit($id)
-    {
-        $movie = Movie::find($id);
-        return \View::make('update',compact('movie'));
-    }
-    // función de actualización
-    public function update(Request $request)
-    {
-        $movie = Movie::find($request->id);
-        $movie->name = $request->name;
-        $movie->description = $request->description;
-        $movie->save();
-        return redirect('movie');
-    }
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
+        // define un objeto
         $movie = new Movie;
+        // relleno el objeto
         $movie->name = $request->name;
         $movie->description = $request->description;
+        // guardo el objeto
         $movie->save();
         // $movie = new Movie;
         // $movie->create($request->all());
+        // redirecciono al listado
         return redirect('movie');
 
     }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        // coge los datos del objeto por id
+        $movie = Movie::find($id);
+        // presenta el formulario
+        return \View::make('show',compact('movie'));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        // coge los datos del objeto por id
+        $movie = Movie::find($id);
+        // presenta el formulario
+        return \View::make('update',compact('movie'));
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        // coge los datos del objeto
+        $movie = Movie::find($request->id);
+        // rellena los cambios del objeto
+        $movie->name = $request->name;
+        $movie->description = $request->description;
+        // guarda los cambios
+        $movie->save();
+        // redirecciona al listado
+        return redirect('movie');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        // busca el objeto por id
+        $movie = Movie::find($id);
+        // borra el objeto
+        $movie->delete();
+        // redirecciona atrás en el histórico
+        return redirect()->back();
+    }
+    // función que busca por criterio
     public function search(Request $request){
         $movies = Movie::where('name','like','%'.$request->name.'%')->get();
         return \View::make('list', compact('movies'));
 
-    }
-    public function destroy($id)
-    {
-        $movie = Movie::find($id);
-        $movie->delete();
-        return redirect()->back();
     }
 }

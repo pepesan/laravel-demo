@@ -27,6 +27,7 @@
                         <td>{{ $movie->name }}</td>
                         <td>{{ $movie->description }}</td>
                         <td>
+                            <a class="btn btn-primary btn-xs" href="{{ route('movie.show',['movie' => $movie->id] )}}" >Show</a>
                             <a class="btn btn-primary btn-xs" href="{{ route('movie.edit',['movie' => $movie->id] )}}" >Edit</a>
                             <a class="btn btn-danger btn-xs" href="{{ route('movie/destroy',['id' => $movie->id] )}}" >Delete</a>
                         </td>
