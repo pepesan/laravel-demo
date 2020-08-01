@@ -9,7 +9,7 @@
                     {!! Form::text('name', null, ['class' => 'form-control' , 'required' => 'required']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('email', 'Descripci&oacute;n') !!}
+                    {!! Form::label('description', 'Descripci&oacute;n') !!}
                     {!! Form::text('description', null, ['class' => 'form-control' , 'required' => 'required']) !!}
                 </div>
                 <div class="form-group">
