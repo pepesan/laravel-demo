@@ -66,7 +66,7 @@ Route::get('redir-named', function () {
     return redirect()->route('named');
 });
 // Redirección por URL
-Route::redirect('/home', '/rutas');
+Route::redirect('/', '/home');
 // Prefijos
 Route::prefix('prefijo')->group(function () {
     Route::get('ruta', function () {
@@ -95,3 +95,7 @@ Route::resource('movie','MovieController');
 Route::get('movie/destroy/{id}', ['as' => 'movie/destroy', 'uses'=>'MovieController@destroy']);
 //ruta para realizar busqueda de registros.
 Route::post('movie/search', ['as' => 'movie/search', 'uses'=>'MovieController@search']);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
