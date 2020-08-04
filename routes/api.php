@@ -29,5 +29,3 @@ Route::prefix('articles')->group(function () {
     Route::put('/{article}', 'ArticleController@update');
     Route::delete('/{article}', 'ArticleController@delete');
 });
-\Illuminate\Support\Facades\Auth::routes(['login'=> false]);
-Route::post('register', 'Auth\APIRegisterController@register');

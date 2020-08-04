@@ -15,6 +15,6 @@ class VerifyCsrfToken extends Middleware
         '/rutas/',
         '/pcontroller/',
         '/pcontroller/*',
-        '/api/register'
+        //'/api/articles'
     ];
 }
