@@ -20,7 +20,17 @@
 
                 <div class="form-group">
                     {!! Form::submit('Enviar', ['class' => 'btn btn-success ' ] ) !!}
+                    <a href="{{ route('movie.index') }}" class="btn btn-primary">Volver</a>
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 {!! Form::close() !!}
             </div>
         </div>

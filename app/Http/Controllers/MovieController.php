@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie as Movie;
+use App\Http\Requests\MovieRequest;
+use Illuminate\Support\Facades\Validator;
 
 class MovieController extends Controller
 {
@@ -33,7 +35,7 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MovieRequest $request)
     {
         // define un objeto
         $movie = new Movie;
@@ -83,6 +85,16 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('movie/'.$id.'/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
         // coge los datos del objeto
         $movie = Movie::find($request->id);
         // rellena los cambios del objeto
