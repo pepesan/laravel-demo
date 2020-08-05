@@ -101,3 +101,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('cosa','CosaController');
+
+
+Route::resource('portatils', 'PortatilController');

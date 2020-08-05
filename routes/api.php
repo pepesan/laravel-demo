@@ -30,7 +30,10 @@ Route::prefix('articles')->group(function () {
     Route::delete('/{article}', 'ArticleController@delete');
 });
 
-Route::post('/log', 'AuthController@login');
+Route::post('/login', 'AuthController@login');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users', 'UserController@index');
 });
+
+
+Route::resource('portatils', 'PortatilAPIController');
