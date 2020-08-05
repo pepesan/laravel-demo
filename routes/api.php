@@ -29,3 +29,8 @@ Route::prefix('articles')->group(function () {
     Route::put('/{article}', 'ArticleController@update');
     Route::delete('/{article}', 'ArticleController@delete');
 });
+
+Route::post('/log', 'AuthController@login');
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/users', 'UserController@index');
+});

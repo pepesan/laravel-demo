@@ -99,3 +99,5 @@ Route::post('movie/search', ['as' => 'movie/search', 'uses'=>'MovieController@se
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('cosa','CosaController');
