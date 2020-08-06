@@ -104,3 +104,5 @@ Route::resource('cosa','CosaController');
 
 
 Route::resource('portatils', 'PortatilController');
+
+Route::resource('coches', 'CocheController');

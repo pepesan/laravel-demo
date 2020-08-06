@@ -37,3 +37,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
 Route::resource('portatils', 'PortatilAPIController');
+
+Route::resource('coches', 'CocheAPIController');
